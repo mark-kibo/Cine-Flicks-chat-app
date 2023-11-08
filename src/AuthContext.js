@@ -11,6 +11,7 @@ const AuthProvider = ({ children }) => {
   const [signinClicked, setSignInClicked]= useState(false)
   const [user, setUser] = useState(false);
   const[users, setUsers] = useState([])
+  const[error, setError] = useState({})
   const[loading , setLoading] = useState(false)
   const navigate = useNavigate()
 
@@ -27,6 +28,9 @@ const AuthProvider = ({ children }) => {
       navigate("/")
     } catch (error) {
       console.error('Login failed:', error);
+      setError({
+        message:"Change a few things up and try submitting again."
+      })
     }
     return response
   };
@@ -40,6 +44,9 @@ const AuthProvider = ({ children }) => {
       console.log(response)
     } catch (error) {
       console.error('sign up failed:', error);
+      setError({
+        message:"Change a few things up and try submitting again."
+      })
     }
     return response
   };
@@ -75,7 +82,7 @@ const AuthProvider = ({ children }) => {
   }, [token]);
 
   return (
-    <AuthContext.Provider value={{ signin, loading, setLoading, signinClicked, token, login, refreshToken, signout, handleSignInClick, user, setUser, users }}>
+    <AuthContext.Provider value={{ error, signin, loading, setLoading, signinClicked, token, login, refreshToken, signout, handleSignInClick, user, setUser, users }}>
       {children}
     </AuthContext.Provider>
   );

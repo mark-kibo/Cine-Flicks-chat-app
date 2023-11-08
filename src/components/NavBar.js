@@ -1,14 +1,18 @@
-import React, { useState } from "react";
-import GoogleSignin from "../img/btn_google_signin_dark_pressed_web.png";
+import React from "react";
 import { useAuth } from "../AuthContext";
-
+import {jwtDecode} from "jwt-decode"
 const NavBar = () => {
  
-  const {token, signout, setLoading, loading}=useAuth()
+  const {token, signout}=useAuth()
+  let username
+  if(token){
+    username =jwtDecode(token)
+  }
+  
   const signOutUser=async()=>{
-    setLoading(true)
+    
       await signout()
-      setLoading(false)
+    
   }
 
 
@@ -16,9 +20,13 @@ const NavBar = () => {
     <nav className="nav-bar">
       <h1 className="font-bold text-2xl">CinFlicks</h1>
       {token && (
+        <>
+        <h3>{username}</h3>
         <button onClick={signOutUser} className="sign-out" type="button">
           Sign Out
         </button>
+        </>
+
       ) }
     </nav>
   );

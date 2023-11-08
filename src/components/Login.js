@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
 import { Button, Checkbox, Label, Modal, TextInput } from 'flowbite-react';
 import { useAuth } from '../AuthContext';
+import ErrorComponent from './Error';
 
 const Login = () => {
-    const {handleSignInClick, loading, setLoading, login} = useAuth()
+    const {handleSignInClick, loading, setLoading, login, error} = useAuth()
     const[username, setUsername]= useState()
     const[password, setPassword]= useState()
     const handleSubmit=async(e)=>{
@@ -18,6 +19,7 @@ const Login = () => {
     
     <form method='post' onSubmit={(e)=>handleSubmit(e)}>
          <div className="space-y-6">
+         {error.message  && ( <ErrorComponent message={error.message}/>)}
             <h3 className="text-xl font-medium text-gray-900 dark:text-white">Sign in to our platform</h3>
             <div>
                
