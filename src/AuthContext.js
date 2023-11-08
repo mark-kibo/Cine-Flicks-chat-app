@@ -38,7 +38,7 @@ const AuthProvider = ({ children }) => {
     let response
     try {
       response = await axios.post('https://cineflicks-api.onrender.com/auth/signUp', { username:username, email:email, password_hash:password });
-      if(response.status == 200){
+      if(response.status === 200){
         setSignInClicked(!signinClicked)
       }
       console.log(response)
@@ -77,6 +77,7 @@ const AuthProvider = ({ children }) => {
 
         setUsers(res.data)
     }
+    return () => getUsers()
     // Implement token refresh logic with setInterval if needed
     // You can periodically call refreshToken to keep the token fresh
   }, [token]);
