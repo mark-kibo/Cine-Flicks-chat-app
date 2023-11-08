@@ -23,7 +23,7 @@ const SendMessage = ({ scroll }) => {
     //   createdAt: serverTimestamp(),
     //   uid,
     // });
-    const res=await axios.post("", {
+    await axios.post("", {
       "message_content": message,
       "chatroom_id": 0,
       "user_id": user_id_obj.id,

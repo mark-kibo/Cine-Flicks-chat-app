@@ -1,5 +1,5 @@
 import React,{useState} from "react";
-import { Button, Checkbox, Label, Modal, TextInput } from 'flowbite-react';
+import { Button,Modal} from 'flowbite-react';
 import Login from "./Login";
 import { useAuth } from "../AuthContext";
 import Register from "./Register";
@@ -14,8 +14,7 @@ const Welcome = () => {
     
   }
 
-  const googleSignIn = () => {
-  };
+  
 
   return (
     <main className="flex flex-col justify-center items-center mt-10">

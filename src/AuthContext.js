@@ -30,17 +30,16 @@ const AuthProvider = ({ children }) => {
     }
     return response
   };
-  const signin = async (username, password) => {
+  const signin = async (username, email,  password) => {
     let response
     try {
-    response = await axios.post('https://cineflicks-api.onrender.com/auth/login', { username, password });
-      const newToken = response.data.access_token;
-      console.log(response.data.access_token)
-      setToken(newToken);
-      localStorage.setItem('token', newToken);
-      
+      response = await axios.post('https://cineflicks-api.onrender.com/auth/signUp', { username:username, email:email, password_hash:password });
+      if(response.status == 200){
+        setSignInClicked(!signinClicked)
+      }
+      console.log(response)
     } catch (error) {
-      console.error('Login failed:', error);
+      console.error('sign up failed:', error);
     }
     return response
   };
@@ -76,7 +75,7 @@ const AuthProvider = ({ children }) => {
   }, [token]);
 
   return (
-    <AuthContext.Provider value={{ loading, setLoading, signinClicked, token, login, refreshToken, signout, handleSignInClick, user, setUser, users }}>
+    <AuthContext.Provider value={{ signin, loading, setLoading, signinClicked, token, login, refreshToken, signout, handleSignInClick, user, setUser, users }}>
       {children}
     </AuthContext.Provider>
   );
