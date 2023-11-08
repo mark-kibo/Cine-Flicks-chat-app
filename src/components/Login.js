@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
-import { Button, Checkbox, Label, Modal, TextInput } from 'flowbite-react';
+import { Button, Checkbox, Label, TextInput } from 'flowbite-react';
 import { useAuth } from '../AuthContext';
 import ErrorComponent from './Error';
+import { Link } from 'react-router-dom';
 
 const Login = () => {
     const {handleSignInClick, loading, setLoading, login, error} = useAuth()
@@ -11,7 +12,7 @@ const Login = () => {
         setLoading(true)
         e.preventDefault()
 
-        const res= await login(username, password)
+        await login(username, password)
         setLoading(false)
     }
  
@@ -50,20 +51,20 @@ const Login = () => {
                 <Checkbox id="remember" />
                 <Label htmlFor="remember">Remember me</Label>
               </div>
-              <a href="#" className="text-sm text-cyan-700 hover:underline dark:text-cyan-500">
+              <Link to="#" className="text-sm text-cyan-700 hover:underline dark:text-cyan-500">
                 Lost Password?
-              </a>
+              </Link>
             </div>
             <div className="w-full">
               <Button  className='w-full' type='submit'>{loading ? "loading.....":"Log in to your account"}</Button>
             </div>
             <div className="flex justify-between text-sm font-medium text-gray-500 dark:text-gray-300">
               Not registered?&nbsp;
-              <a className="text-cyan-700 hover:underline dark:text-cyan-500" onClick={()=>{
+              <Link  to="" className="text-cyan-700 hover:underline dark:text-cyan-500" onClick={()=>{
                 handleSignInClick()
               }}>
                 Create account
-              </a>
+              </Link>
             </div>
          
             </div>
