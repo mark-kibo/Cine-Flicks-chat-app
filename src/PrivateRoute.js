@@ -11,7 +11,7 @@ const PrivateRoute = ()=>{
 
         
         return (
-           token ? <Outlet/> : <Navigate to="/login"/>
+           token ? <Outlet/> : <Navigate to="/welcome"/>
         )
 }
 
