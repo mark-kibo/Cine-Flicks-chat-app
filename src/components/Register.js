@@ -29,10 +29,10 @@ const Register = () => {
     const specialCharRegex = /[@#$%^&+=]/;
 
     const isValid =
-      capitalRegex.test(value) &&
-      smallRegex.test(value) &&
-      numberRegex.test(value) &&
-      specialCharRegex.test(value) &&
+      capitalRegex.test(value) ||
+      smallRegex.test(value) ||
+      numberRegex.test(value) ||
+      specialCharRegex.test(value) ||
       value.length >= 8;
 
     return isValid;
@@ -54,7 +54,7 @@ const Register = () => {
 
   const handlePasswordChange = (e) => {
     const value = e.target.value;
-    const isValid = validatePassword(value);
+    const isValid = validatePassword(e.target.value);
     setPassword(isValid ? value : '');
     validateForm();
   };
