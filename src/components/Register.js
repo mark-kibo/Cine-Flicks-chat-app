@@ -91,7 +91,7 @@ const Register = () => {
         {error.message && <ErrorComponent message={error.message} />}
 
         <h3 className="text-xl font-medium text-gray-900 dark:text-white">
-          Sign in to our platform
+          Sign up to our platform
         </h3>
         <div>
           <div className="mb-1 block">
